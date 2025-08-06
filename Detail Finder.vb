@@ -14,7 +14,7 @@ Imports System.Windows.Forms
 'This module contains this program's core procedures.
 Public Module DetailFinderModule
    'The Microsoft Windows API constants and functions used by this program:
-   Public Const NOTSRCCOPY As UInteger = &H330008%
+   Public Const NOTSRCCOPY As UInteger = &H330008UI
 
    <DllImport("Gdi32.dll", SetLastError:=True)> Public Function BitBlt(ByVal hdc As IntPtr, ByVal nXDest As Integer, ByVal nYDest As Integer, ByVal nWidth As Integer, ByVal nHeight As Integer, ByVal hdcSrc As IntPtr, ByVal nXSrc As Integer, ByVal nYSrc As Integer, ByVal dwRop As UInteger) As Boolean
    End Function
