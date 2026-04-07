@@ -43,7 +43,7 @@ Public Class InterfaceWindow
          AddHandler LowerThresholdBox.LostFocus, AddressOf UpdateHighlights
          AddHandler UpperThresholdBox.LostFocus, AddressOf UpdateHighlights
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -57,7 +57,7 @@ Public Class InterfaceWindow
          End If
       Catch ExceptionO As Exception
          MousePointer(Busy:=False)
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -70,7 +70,7 @@ Public Class InterfaceWindow
             UpdateFilesList()
          End If
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -79,7 +79,7 @@ Public Class InterfaceWindow
       Try
          UpdateDriveList()
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -90,7 +90,7 @@ Public Class InterfaceWindow
          UpdateDirectoryList()
          UpdateFilesList()
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       Finally
          SelectCurrentDrive()
       End Try
@@ -104,7 +104,7 @@ Public Class InterfaceWindow
             ImageBox.Image = CurrentImage
          End If
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -113,7 +113,7 @@ Public Class InterfaceWindow
       Try
          ImageGrabber.Enabled = GrabFromClipboardBox.Checked
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -125,7 +125,7 @@ Public Class InterfaceWindow
             ImageBox.Image = CurrentImage
          End If
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -134,7 +134,7 @@ Public Class InterfaceWindow
       Try
          If e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.All
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -147,7 +147,7 @@ Public Class InterfaceWindow
             If Not .Levels Is Nothing AndAlso .Steps.Width > 0 AndAlso .Steps.Height > 0 Then Me.Text &= $" - Detail Level: { .Levels(e.X \ .Steps.Width, e.Y \ .Steps.Height)}"
          End With
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -165,7 +165,7 @@ Public Class InterfaceWindow
          End If
       Catch ExceptionO As Exception
          MousePointer(Busy:=False)
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -174,7 +174,7 @@ Public Class InterfaceWindow
       Try
          ToolTipBox.SetToolTip(ImageBox, $"Size: {ImageBox.Width} x {ImageBox.Height}")
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -197,7 +197,7 @@ Public Class InterfaceWindow
 
          UpdateHighlights(Nothing, Nothing)
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -206,7 +206,7 @@ Public Class InterfaceWindow
       Try
          Return PathO.Substring(0, PathO.IndexOf(Path.VolumeSeparatorChar) + 1)
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
 
       Return Nothing
@@ -224,7 +224,7 @@ Public Class InterfaceWindow
                Return HighlightModesE.ObscuredHighlightMode
          End Select
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
 
       Return HighlightModesE.BoxedHighlightMode
@@ -239,7 +239,7 @@ Public Class InterfaceWindow
             Item.Cursor = If(Busy, Cursors.WaitCursor, Cursors.Default)
          Next Item
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -255,7 +255,7 @@ Public Class InterfaceWindow
             Next Index
          End With
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -270,7 +270,7 @@ Public Class InterfaceWindow
             .Items.AddRange((From Item In New DirectoryInfo(Current).GetDirectories() Where Not Item.Attributes.HasFlag(FileAttributes.Hidden)).ToArray())
          End With
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -288,7 +288,7 @@ Public Class InterfaceWindow
             Next DriveO
          End With
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -298,7 +298,7 @@ Public Class InterfaceWindow
          FileListBox.Items.Clear()
          FileListBox.Items.AddRange((From FileO As FileInfo In New DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles() Where IMAGE_EXTENSIONS.Contains(FileO.Extension.ToLower()) Select FileO.Name).ToArray())
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 
@@ -316,7 +316,7 @@ Public Class InterfaceWindow
          End If
       Catch ExceptionO As Exception
          MousePointer(Busy:=False)
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
    End Sub
 End Class

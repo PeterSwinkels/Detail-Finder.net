@@ -91,11 +91,20 @@ Public Module DetailFinderModule
 
          Return Results
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
 
       Return Nothing
    End Function
+
+   'This procedure displays any exceptions that occur.
+   Public Sub DisplayException(ExceptionO As Exception)
+      Try
+         MessageBox.Show(ExceptionO.Message, My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+      Catch
+         Application.Exit()
+      End Try
+   End Sub
 
    'This procedure draws highlights for details within the specified thresholds on the specified image.
    Public Function DrawResults(ImageO As Bitmap, Details As ResultsStr, LowerThreshold As Integer, UpperThreshold As Integer, Color As Color, Mode As HighlightModesE) As Bitmap
@@ -137,20 +146,11 @@ Public Module DetailFinderModule
 
          Return Highlights
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
 
       Return Nothing
    End Function
-
-   'This procedure handles any errors that occur and notifies the user.
-   Public Sub HandleError(ExceptionO As Exception)
-      Try
-         MessageBox.Show(ExceptionO.Message, My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-      Catch
-         Application.Exit()
-      End Try
-   End Sub
 
    'This procedure returns this program's information.
    Public Function ProgramInformation() As String
@@ -159,7 +159,7 @@ Public Module DetailFinderModule
             Return $"{ .Title} v{ .Version}, by: { .CompanyName}"
          End With
       Catch ExceptionO As Exception
-         HandleError(ExceptionO)
+         DisplayException(ExceptionO)
       End Try
 
       Return Nothing
